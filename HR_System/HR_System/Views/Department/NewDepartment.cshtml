@@ -1,0 +1,44 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "NewDepartment";
+    Layout = "~/Views/Shared/_LayoutView.cshtml";
+}
+
+@section Body{
+    <form method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <h3>Department</h3>
+                </div>
+            </div>
+            <input type="hidden" asp-for="ID"/>
+            <div class="row" style="margin-top:10px">
+                <div class="col-lg-1">
+                    <label asp-for="Name"></label>
+                </div>
+
+                <div class="col-lg-3">
+                    <input type="text" class="form-control" asp-for="Name" />
+                </div>
+
+                
+                @if ((bool)ViewData["ISValid"] == false)
+                {
+                    <div class="col-lg-1">
+                        <input type="submit" value="Save" class="btn btn-primary" asp-action="SaveData" />
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-1">
+                        <input type="submit" value="Update" class="btn btn-primary" asp-action="UpdateData" />
+                    </div>
+                }
+            </div>
+
+
+    </form>
+}
+
+

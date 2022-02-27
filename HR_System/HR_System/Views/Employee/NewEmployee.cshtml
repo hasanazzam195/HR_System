@@ -1,0 +1,115 @@
+﻿@model VMEmployee
+@{
+    ViewData["Title"] = "NewEmployee";
+    Layout = "~/Views/Shared/_LayoutView.cshtml";
+}
+
+@section Body{ 
+    <form method="post" enctype="multipart/form-data">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <h2>Employee</h2>
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="employee.ID"/>
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-1">
+                    <label asp-for="employee.FName"></label>
+                </div>
+
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" asp-for="employee.FName" />
+                    <span asp-validation-for="employee.FName"></span>
+                </div>
+
+                <div class="col-lg-1 col-lg-offset-2">
+                    <label asp-for="employee.LName"></label>
+                </div>
+
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" asp-for="employee.LName" />
+                    <span asp-validation-for="employee.LName"></span>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-1">
+                    <label asp-for="employee.Phone"></label>
+                </div>
+
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" asp-for="employee.Phone" />
+                    <span asp-validation-for="employee.Phone"></span>
+                </div>
+                <div class="col-lg-1 col-lg-offset-2">
+                    <label asp-for="employee.Email"></label>
+                </div>
+
+                <div class="col-lg-4">
+                    <input type="email" class="form-control" asp-for="employee.Email" />
+                    <span asp-validation-for="employee.Email"></span>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-1">
+                    <label asp-for="employee.BDate"></label>
+                </div>
+
+                <div class="col-lg-4">
+                    <input type="date" class="form-control" asp-for="employee.BDate" />
+                    <span asp-validation-for="employee.BDate"></span>
+                </div>
+                <div class="col-lg-1 col-lg-offset-2">
+                    <label asp-for="employee.DateOFJoin"></label>
+                </div>
+
+                <div class="col-lg-4">
+                    <input type="date" class="form-control" asp-for="employee.DateOFJoin" />
+                    <span asp-validation-for="employee.DateOFJoin"></span>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-1">
+                    <label asp-for="employee.gender"></label>
+                </div>
+                <div class="col-lg-4">
+                    <select class="form-control" asp-for="employee.gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <span asp-validation-for="employee.gender"></span>
+                </div>
+
+                <div class="col-lg-1 col-lg-offset-2">
+                    <label asp-for="employee.department"></label>
+                </div>
+
+                <div class="col-lg-4">
+                    <select class="form-control" asp-items='new SelectList(Model.lidepartments,"ID","Name")' asp-for="employee.Department_id"> </select>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-lg-4">
+                    <input type="file" id="fileUp" style="display:none;" asp-for="employee.ProfileImage" />
+                    <label class="btn btn-primary" for="fileUp">Upload Image</label>
+                </div>
+
+                <div class="col-lg-2 col-lg-offset-4">
+                    @if ((bool)ViewData["ISValid"] == false)
+                    {
+                        <input type="submit" value="Save" class="btn btn-primary" asp-action="SaveData" />
+                    }
+                    else
+                    {
+                        <input type="submit" value="Update" class="btn btn-primary" asp-action="UpdateData" />
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+}

@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_LayoutView</title>
+    <script src="~/twitter-bootstrap/js/bootstrap.js"></script>
+    <link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div class="container-fluid>
+        <div class="row">
+            <nav class="navbar-default" style="background: #337ab7;">
+                <div class="navbar-brand" style=" color: white;">
+                    HR system
+                </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-target="#menu1" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="menu1" class="navbar-collapse collapse">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a asp-action="NewDepartment" asp-controller="Department" style="color: white;">New Department</a>
+                            </li>
+                            <li>
+                                <a asp-action="Departmentlist" asp-controller="Department" style="color: white;">Department List</a>
+                            </li>
+                            <li>
+                                <a asp-action="Index" asp-controller="Employee" style=" color: white;">New Employee</a>
+                            </li>
+                            <li>
+                                <a asp-action="EmployeeList" asp-controller="Employee" style=" color: white;">Employee List</a>
+                            </li>
+                        </ul>
+                    }
+                <ul class="nav navbar-nav navbar-right">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-action="SignOut" asp-controller="Account" style="color: white;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
+                    }
+                    else
+                    {
+                        <li><a asp-action="Index" asp-controller="Account" style="color: white;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a asp-action="SignIn" asp-controller="Account" style="color: white;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                    }
+
+                </ul>
+                    </div>
+
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                @RenderSection("Body", false)
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

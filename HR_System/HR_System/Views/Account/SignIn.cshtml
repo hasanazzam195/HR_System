@@ -1,0 +1,39 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = "~/Views/Shared/_LayoutView.cshtml";
+}
+
+@section Body{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                @ViewData["ErrorMessage"]
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <form method="post">
+
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password"></span>
+                    </div>
+
+                    <div class="form-group">
+
+                        <input type="submit" value="Login" class="btn btn-primary" asp-action="Login" />
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+}
